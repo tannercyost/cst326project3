@@ -16,33 +16,23 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetAxis("Horizontal") == 1)
-        //{
-        //    float translation = Input.GetAxis("Horizontal") * speed;
-        //    translation *= Time.deltaTime;
-        //    transform.Translate(translation, 0, 0);
-        //}
-        //if (Input.GetAxis("Horizontal") == -1)
-        //{
-        //    float translation = Input.GetAxis("Horizontal") * speed;
-        //    translation *= Time.deltaTime;
-        //    transform.Translate(translation, 0, 0);
-        //}
-        //if (Input.GetKeyDown(KeyCode.LeftShift))
-        //{
-        //    speed = 10.0f;
-        //} 
-        //else
-        //{
-        //    speed = 5.0f;
-        //}
         float translation = Input.GetAxis("Horizontal") * speed;
         translation *= Time.deltaTime;
         transform.Translate(translation, 0, 0);
     }
 
+    private void Fire()
+    {
+        Debug.Log("Firing projectile");
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // NYI
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Debug.Log("Bullet collided");
+            Debug.Log("-1 lives");
+        }
     }
 }
