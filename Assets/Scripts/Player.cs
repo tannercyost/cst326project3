@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-  public GameObject bullet;
+    public GameObject bullet;
+    public float speed;
+    public Transform shottingOffset;
 
-  public Transform shottingOffset;
+    void Start()
+    {
+        speed = 5.0f;
+    }
     // Update is called once per frame
     void Update()
     {
-      if (Input.GetKeyDown(KeyCode.Space))
-      {
+        float translation = Input.GetAxis("Horizontal") * speed;
+        translation *= Time.deltaTime;
+        transform.Translate(translation, 0, 0);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            fire();
+        }
+    }
+
+    private void fire()
+    {
         GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
         Debug.Log("Bang!");
-
         Destroy(shot, 3f);
-
-      }
     }
 }
