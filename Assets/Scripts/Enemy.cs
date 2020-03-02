@@ -5,18 +5,26 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int value;
-    // Start is called before the first frame update
+    public bool isBottom;
+    public Transform shootingOffset;
+    public GameObject bullet;
+    public EnemyManager manager;
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Ouch!");
+        manager.ReportDeath(value);
         Destroy(this.gameObject);
-
     }
     void Start()
     {
+        shootingOffset = transform.Find("ShootOffset");
+        value = 0;
+        isBottom = false;
+
         // set value based on transform y value
-        if (transform.position[1] == 1)
+        if (transform.position[1] == 1) {
             value = 10;
+            isBottom = true;
+        }
         else if (transform.position[1] == 2)
             value = 20;
         else if (transform.position[1] == 3)
@@ -24,5 +32,15 @@ public class Enemy : MonoBehaviour
         else if (transform.position[1] == 4)
             value = 50;
         //Debug.Log(value);
+    }
+
+    private void Update()
+    {
+ 
+    }
+    private void Fire()
+    {
+        GameObject shot = Instantiate(bullet, shootingOffset.position, Quaternion.identity);
+        Destroy(shot, 3f);
     }
 }

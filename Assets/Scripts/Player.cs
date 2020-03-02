@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public GameObject bullet;
     public float speed;
-    public Transform shottingOffset;
+    public Transform shootingOffset;
 
     void Start()
     {
@@ -21,13 +21,13 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            fire();
+            Fire();
         }
     }
 
-    private void fire()
+    private void Fire()
     {
-        GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
+        GameObject shot = Instantiate(bullet, shootingOffset.position, Quaternion.identity);
         Debug.Log("Bang!");
         Destroy(shot, 3f);
     }
