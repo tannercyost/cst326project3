@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     public float speed;
     public Transform shootingOffset;
-
     void Start()
     {
         speed = 5.0f;
