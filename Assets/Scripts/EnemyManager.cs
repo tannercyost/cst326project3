@@ -10,7 +10,10 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
-        
+        foreach (Enemy e in enemyList)
+        {
+            Debug.Log(e.value);
+        }
     }
 
     void Update()
