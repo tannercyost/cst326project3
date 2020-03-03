@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
     {
  
     }
-    private void Fire()
+    public void Fire()
     {
         GameObject shot = Instantiate(bullet, shootingOffset.position, Quaternion.identity);
         Destroy(shot, 3f);

@@ -1684,7 +1684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cdcdc8f506968548b9b30cef6fdf27c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  bullet: {fileID: 40156043854390839, guid: ce2b83b600b9b264ba88fa696c83cc26, type: 3}
   speed: 0
   shootingOffset: {fileID: 153418052}
 --- !u!1001 &659992656
@@ -4564,6 +4564,7 @@ MonoBehaviour:
   - {fileID: 1751360978}
   - {fileID: 246714335}
   enemyCount: 0
+  gManager: {fileID: 494921931}
 --- !u!4 &1900414285
 Transform:
   m_ObjectHideFlags: 0

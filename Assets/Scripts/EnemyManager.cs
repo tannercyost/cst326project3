@@ -20,6 +20,7 @@ public class EnemyManager : MonoBehaviour
         {
             Debug.Log(e.value);
         }
+        InvokeRepeating("Attack", 2.0f, 6.0f);
     }
 
     private void OnDeath(int value)
@@ -41,11 +42,16 @@ public class EnemyManager : MonoBehaviour
     void Update()
     {
         
+        // InvokeRepeating("Attack", 2.0f, 6.0f);
     }
 
     private void Attack()
     {
-
+        foreach (Enemy e in enemyList)
+        {
+            if (e.isBottom)
+                e.Fire();
+        }
     }
 
 }
