@@ -13,10 +13,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI highScoreText;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        playerScore = 0;
-        highScore = 0;
+        if (GameObject.FindObjectOfType(typeof(GameManager)) != this)
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+
+        if (ScoreData.highScore > 0)
+            highScore = ScoreData.highScore;
+
+        UpdateScores();
     }
 
     public void AddScore(int value)
@@ -27,6 +35,7 @@ public class GameManager : MonoBehaviour
         if (playerScore > highScore)
         {
             highScore = playerScore;
+            ScoreData.highScore = playerScore;
         }
 
         UpdateScores();
@@ -44,10 +53,5 @@ public class GameManager : MonoBehaviour
     public void ResetScene()
     {
         SceneManager.LoadScene("MainScene");
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

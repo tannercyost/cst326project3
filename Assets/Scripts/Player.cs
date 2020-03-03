@@ -7,9 +7,11 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     public float speed;
     public Transform shootingOffset;
+    private int lives;
     void Start()
     {
         speed = 5.0f;
+        lives = 3;
     }
     // Update is called once per frame
     void Update()
