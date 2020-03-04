@@ -9,12 +9,14 @@ public class GameManager : MonoBehaviour
 {
     private int playerScore;
     private int highScore;
+    private int lives;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highScoreText;
 
     // Start is called before the first frame update
     void Awake()
     {
+        lives = 3;
         if (GameObject.FindObjectOfType(typeof(GameManager)) != this)
         {
             Destroy(gameObject);
@@ -50,6 +52,12 @@ public class GameManager : MonoBehaviour
         highScoreText.text = stringHighScore;
     }
 
+    public void playerLost()
+    {
+        Debug.Log("Player lost.");
+        lives--;
+
+    }
     public void ResetScene()
     {
         SceneManager.LoadScene("MainScene");

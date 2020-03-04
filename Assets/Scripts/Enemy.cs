@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public EnemyManager manager;
     void OnCollisionEnter2D(Collision2D collision)
     {
-        manager.ReportDeath(value);
+        manager.ReportDeath(value, this.gameObject);
         Destroy(this.gameObject);
     }
     void Start()
