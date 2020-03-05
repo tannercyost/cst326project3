@@ -12,10 +12,14 @@ public class GameManager : MonoBehaviour
     private int lives;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highScoreText;
-
+    [SerializeField] private GameObject playerPrefab;
+    GameObject player;
+    
     // Start is called before the first frame update
     void Awake()
     {
+        player = Instantiate(playerPrefab, new Vector3(0, -4.5f, 0), Quaternion.identity);
+        // player.GetComponent<GameManager>().GM 
         lives = 3;
         if (GameObject.FindObjectOfType(typeof(GameManager)) != this)
         {
@@ -55,8 +59,17 @@ public class GameManager : MonoBehaviour
     public void playerLost()
     {
         Debug.Log("Player lost.");
+        
+        if (lives > 0)
+        {
+            player.transform.position = new Vector3(0, -4.5f, 0);
+        }
+        else
+        {
+            Destroy(playerPrefab.gameObject);
+            Debug.Log("You ran out of lives.");
+        }
         lives--;
-
     }
     public void ResetScene()
     {

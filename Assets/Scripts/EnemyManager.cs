@@ -22,8 +22,8 @@ public class EnemyManager : MonoBehaviour
         {
             Debug.Log(e.value);
         }
-        InvokeRepeating("Attack", 2.0f, 6.0f);
-        InvokeRepeating("Movement", 2.0f, 1.0f);
+        InvokeRepeating("Attack", 2.0f, 2.371f);
+        InvokeRepeating("Movement", 1.0f, 1.312f);
     }
 
     private void OnDeath(int value)
