@@ -11,8 +11,11 @@ public class Enemy : MonoBehaviour
     public EnemyManager manager;
     void OnCollisionEnter2D(Collision2D collision)
     {
-        manager.ReportDeath(value, this.gameObject);
-        Destroy(this.gameObject);
+        if (collision.collider.name != "Enemy")
+        {
+            manager.ReportDeath(value, this.gameObject);
+            Destroy(this.gameObject);
+        }
     }
     void Start()
     {
@@ -34,9 +37,23 @@ public class Enemy : MonoBehaviour
         //Debug.Log(value);
     }
 
-    private void Update()
+    public void Move(int a)
     {
- 
+        float amt = 0.1f;
+        
+        if (a == 0) // right
+        {
+            transform.Translate(Vector3.right);
+        }
+        if (a == 1) // left
+        {
+            transform.Translate(Vector3.left);
+        }
+        if (a == 2) // down
+        {
+            transform.Translate(Vector3.down);
+        }
+
     }
     public void Fire()
     {

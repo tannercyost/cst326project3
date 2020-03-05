@@ -8,7 +8,9 @@ public class EnemyManager : MonoBehaviour
     private int speed;
     private float stepSize;
     public int enemyCount;
-
+    private int leftMoves;
+    private int rightMoves;
+    private int downMoves;
     [SerializeField] private GameManager gManager;
 
     
@@ -21,6 +23,7 @@ public class EnemyManager : MonoBehaviour
             Debug.Log(e.value);
         }
         InvokeRepeating("Attack", 2.0f, 6.0f);
+        InvokeRepeating("Movement", 2.0f, 1.0f);
     }
 
     private void OnDeath(int value)
@@ -72,6 +75,39 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    private void Movement()
+    {
+        if (rightMoves < 6)
+        {
+            MoveEnemies(0);
+            rightMoves++;
+        }
+        else if (downMoves < 1)
+        {
+            MoveEnemies(2);
+            downMoves++;
+        }
+        else if (leftMoves < 6)
+        {
+            MoveEnemies(1);
+            leftMoves++;
+        }
+
+        else
+        {
+            rightMoves = 0;
+            leftMoves = 0; 
+            downMoves = 0;
+        }
+    }
+
+    private void MoveEnemies(int direction)
+    {
+        foreach (Enemy e in enemyList)
+        {
+            e.Move(direction);
+        }
+    }
     private void Attack()
     {
         foreach (Enemy e in enemyList)
