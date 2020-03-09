@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -8,12 +9,14 @@ public class Player : MonoBehaviour
     [SerializeField] private GameManager GM;
     public float speed;
     public Transform shootingOffset;
-    private int lives;
+    public UnityEvent events;
+
 
     void Start()
     {
         speed = 5.0f;
-        lives = 3;
+
+        // GM = GameObject.Find("GameManager");
     }
     // Update is called once per frame
     void Update()
@@ -31,7 +34,6 @@ public class Player : MonoBehaviour
     private void Fire()
     {
         GameObject shot = Instantiate(bullet, shootingOffset.position, Quaternion.identity);
-        Debug.Log("Bang!");
         Destroy(shot, 3f);
     }
 

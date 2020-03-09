@@ -18,10 +18,7 @@ public class EnemyManager : MonoBehaviour
     {
         speed = 1;
         stepSize = 0.5f;
-        foreach (Enemy e in enemyList)
-        {
-            Debug.Log(e.value);
-        }
+
         InvokeRepeating("Attack", 2.0f, 2.371f);
         InvokeRepeating("Movement", 1.0f, 1.312f);
     }
@@ -40,7 +37,7 @@ public class EnemyManager : MonoBehaviour
         OnDeath(value);
         foreach (Enemy e in enemyList)
         {
-            if (e.name == enemy.name)
+            if (e.name == enemy.gameObject.name)
             {
                 toRemove = e;
                 //enemyList.Remove(e);
@@ -48,29 +45,26 @@ public class EnemyManager : MonoBehaviour
         }
         if (toRemove != null)
         {
+            Debug.Log("Removed enemy: " + toRemove);
             enemyList.Remove(toRemove);
+            Destroy(toRemove);
         }
 
-        findNextBottom();
-        // call OnDeath
-        // raycast each to find lowest
-        // set lowest isBottom to true
+        // findNextBottom(); 
+
     }
 
     private void findNextBottom()
     {
-
         foreach (Enemy e in enemyList)
         {
-            Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
-
             RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
             if (hit.collider != null || hit.collider.CompareTag("Player"))
             {
                 // if downward raycast is null it must be the bottom
                 // if downward raycast hits player that is fine
+                e.isBottom = true;
             }
-            Debug.DrawRay(transform.position, forward, Color.green);
             Debug.Log(hit);
         }
     }
@@ -116,5 +110,4 @@ public class EnemyManager : MonoBehaviour
                 e.Fire();
         }
     }
-
 }

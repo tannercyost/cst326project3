@@ -13,8 +13,8 @@ public class Enemy : MonoBehaviour
     {
         if (collision.collider.name != "Enemy")
         {
-            manager.ReportDeath(value, this.gameObject);
-            Destroy(this.gameObject);
+            manager.ReportDeath(value, gameObject);
+            Destroy(gameObject);
         }
     }
     void Start()
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
 
     public void Move(int a)
     {
-        float amt = 0.1f;
+        // float amt = 0.1f;
         
         if (a == 0) // right
         {

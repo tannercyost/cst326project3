@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro; // Add the TextMesh Pro namespace to access the various functions.
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 
 public class GameManager : MonoBehaviour
@@ -12,14 +13,14 @@ public class GameManager : MonoBehaviour
     private int lives;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highScoreText;
-    [SerializeField] private GameObject playerPrefab;
-    GameObject player;
+    private GameObject player;
+    public UnityEvent events;
     
     // Start is called before the first frame update
     void Awake()
     {
-        player = Instantiate(playerPrefab, new Vector3(0, -4.5f, 0), Quaternion.identity);
-        // player.GetComponent<GameManager>().GM 
+        player = GameObject.Find("Player");
+
         lives = 3;
         if (GameObject.FindObjectOfType(typeof(GameManager)) != this)
         {
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void playerLost()
     {
-        Debug.Log("Player lost.");
+        Debug.Log("Player lost. Lives left: " + lives);
         
         if (lives > 0)
         {
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(playerPrefab.gameObject);
+            player.transform.position = new Vector3(100, -14.5f, 0);
             Debug.Log("You ran out of lives.");
         }
         lives--;
@@ -74,5 +75,10 @@ public class GameManager : MonoBehaviour
     public void ResetScene()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void Log(string msg)
+    {
+        Debug.Log(gameObject.name + ": " + msg);
     }
 }
