@@ -19,8 +19,8 @@ public class EnemyManager : MonoBehaviour
         speed = 1;
         stepSize = 0.5f;
 
-        InvokeRepeating("Attack", 2.0f, 2.371f);
-        InvokeRepeating("Movement", 1.0f, 1.312f);
+        InvokeRepeating("Attack", 3.0f, 2.371f);
+        InvokeRepeating("Movement", 1.0f, 1.712f);
     }
 
     private void OnDeath(int value)
