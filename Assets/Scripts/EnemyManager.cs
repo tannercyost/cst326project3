@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -41,13 +42,18 @@ public class EnemyManager : MonoBehaviour
             {
                 toRemove = e;
                 //enemyList.Remove(e);
-            }
+            } 
+ 
         }
         if (toRemove != null)
         {
             Debug.Log("Removed enemy: " + toRemove);
             enemyList.Remove(toRemove);
             Destroy(toRemove);
+        }
+        if (enemyList.Count == 0)
+        {
+            SceneManager.LoadScene("Won");
         }
 
         // findNextBottom(); 

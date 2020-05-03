@@ -30,8 +30,8 @@ public class GameManager : MonoBehaviour
 
         if (ScoreData.highScore > 0)
             highScore = ScoreData.highScore;
-
-        UpdateScores();
+        if (player != null) 
+            UpdateScores();
     }
 
     public void AddScore(int value)
@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
         {
             player.transform.position = new Vector3(100, -14.5f, 0);
             Debug.Log("You ran out of lives.");
+            SceneManager.LoadScene("Lost");
         }
         lives--;
     }
